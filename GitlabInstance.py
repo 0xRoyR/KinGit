@@ -180,7 +180,7 @@ class GitlabInstance:
             # Get the next chunk of pages, create a thread for each page and start the thread.
             # the size of each chunk of pages equals to the number of threads ('self.threads_counter').
             for i in range(self.pages_counter, self.pages_counter + self.threads_counter):
-                curr_thread = threading.Thread(target=self.enum_projects_at_page, args=(self.pages_counter,))
+                curr_thread = threading.Thread(target=self.enum_projects_at_page, args=(i,))
                 self.threads.append(curr_thread)
             for thread in self.threads:
                 thread.start()
